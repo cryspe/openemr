@@ -1,7 +1,7 @@
 # openemr
-Security vulnerabilities discovered in the OpenEMR application
+Security vulnerabilities discovered in the OpenEMR application version 6.0.0 Patch 3
 
-Cataloged within this site are vulnerabilities identified within the OpenEMR application.
+Cataloged within this site are vulnerabilities identified within the OpenEMR application version 6.0.0 Patch 3.
 
 These vulnerabilities were discovered while completing the research project related to the Masters in Cyber Security Engineering through the SANS Institute.
 
