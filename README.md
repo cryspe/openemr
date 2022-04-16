@@ -26,7 +26,7 @@ The paper will be linked once available, but the sections are included in the pr
 
 1. [Introduction]()  
 2. [Research Method]()  
-3. [Findings and Discussion]()  
+3. [Findings and Discussion](https://github.com/cryspe/openemr/blob/d498237b56078a3409549533157a973a1655facc/3%20-%20Findings%20and%20Discussion.md#L2)  
     1. [Date of Birth Information Leak]()  
     2. [Unauthorized Patient Insurance Update]()  
     3. [Denial of Service by Self-Registration]()  
