@@ -1,8 +1,8 @@
 # 3.	Findings and Discussion
 The patient portal is designed to be exposed to the internet, allowing patients access to their medical records and the ability to update their information from home.  The exposure makes this portion of the program a primary threat vector for an attacker.  Within this patient portal is a self-registration component which is an optional feature.  The self-registration is designed for patients who are not currently registered in the practice to build an account secured by a username and password combination, submitting their demographics and insurance information to the provider.  Once the account is created and verified by an email registration process, the patient can view available appointment slots, request an appointment, upload documents, and securely message the care team members.  This is an excellent feature for a busy practice, alleviating a costly phone call and allowing convenience for busy professionals who are not available during working hours.  This added functionality comes at a cost, though.  By allowing registration, problems such as duplicate accounts need to be resolved.  It is within this account check function that the first vulnerability was discovered.
 
-1. [Date of Birth Information Leak]()  
-2. [Unauthorized Patient Insurance Update]()  
-3. [Denial of Service by Self-Registration]()  
-4. [Uncredentialed Patient Portal API Access]()  
-5. [Self-Registration Feature Requirement]()
+1. [Date of Birth Information Leak](https://github.com/cryspe/openemr/blob/main/3.1%20-%20Date%20of%20Birth%20Information%20Leak.md)  
+2. [Unauthorized Patient Insurance Update](https://github.com/cryspe/openemr/blob/main/3.2%20-%20Unauthorized%20Patient%20Insurance%20Update.md)  
+3. [Denial of Service by Self-Registration](https://github.com/cryspe/openemr/blob/main/3.3%20-%20Denial%20of%20Service%20by%20Self-Registration.md)  
+4. [Uncredentialed Patient Portal API Access](https://github.com/cryspe/openemr/blob/main/3.4%20-%20Uncredentialed%20Patient%20Portal%20API%20Access.md)  
+5. [Self-Registration Feature Requirement](https://github.com/cryspe/openemr/blob/main/3.5%20-%20Self-Registration%20Feature%20Requirement.md)
