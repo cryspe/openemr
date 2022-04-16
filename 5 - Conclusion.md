@@ -1,0 +1,6 @@
+# 5.	Conclusion
+In less than two decades, the healthcare industry has been pulled and pushed into the digital age.  However, these rapid transformations came at the price of patient information security, and the next two decades will likely be spent catching up.  During this research, vulnerabilities were uncovered that have existed for years.  From information leakage and clinic disruption to full access to all patient information in the system, weaknesses have been exposed that will strengthen the product and protect the sensitive patient information from abuse.
+
+The prioritization techniques provided here can serve as a framework to address the highest exposure components first and allow less overlap and more thorough code analysis.  This, in turn, will result in a more secure application and better-protected patient records.  
+
+The OpenEMR initiative to bring a fully open-source, free software alternative to healthcare providers is a lofty goal.  Securing a treasure trove of sensitive information from attackers who can analyze the code may even be loftier.  Only together, as a community, can projects like OpenEMR continue to advance and thrive. 
