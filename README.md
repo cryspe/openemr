@@ -1,4 +1,4 @@
-# openemr
+# OpenEMR
 Security vulnerabilities discovered in the OpenEMR application version 6.0.0 Patch 3
 
 Cataloged within this site are vulnerabilities identified within the OpenEMR application version 6.0.0 Patch 3.
