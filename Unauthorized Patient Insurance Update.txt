@@ -1,0 +1,37 @@
+3.2.	Unauthorized Patient Insurance Update
+Within the patient self-registration workflow of the OpenEMR patient portal, a function exists to add insurance information.  This function resides in the base “/portal/account/account.php” file and is called by making a POST request with a body containing the provider, plan name, policy number, group number, effective date, and copay.  The query string parameter “new_insurance” is added to the request, and the patient id (PID) is specified in the query string.
+
+3.2.1.	Vulnerability Discovery
+The ability to specify the patient ID warranted further examination of the code for possible abuse.  Again, the authentication checks are bypassed for the self-registration feature.  
+
+/portal/account/account.php
+19: if (
+20:    ($_SESSION['register'] === true &&  isset($_SESSION['pid'])) ||
+21:($_SESSION['credentials_update'] === 1 && isset($_SESSION['pid'])) ||
+22: ($_SESSION['itsme'] === 1 && isset($_SESSION['password_update']))
+23: ) {
+24:    $ignoreAuth_onsite_portal = true;
+25: }
+
+The “new_insurance” action takes the PID from the request instead of the session and makes a call to “/portal/account/account.lib.php” through the “saveInsurance” function.
+
+/portal/account/account.php
+97:  if ($action == 'new_insurance') {
+98:    $pid = $_REQUEST['pid'];
+99:    saveInsurance($pid);
+100:   exit();
+101: }
+
+The “saveInsurance” function provides no further check, allowing a malicious user to overwrite the insurance of any known PID, or scripting the attack to overwrite all insurance information by iterating through the PID values.
+The threat actor can control the patient which the insurance submission affects by changing the PID value in the query string, which MITRE identifies as an Authorization Bypass Through User-Controlled Key (CWE-639).  Authorization is ignored when the patient portal is used, which MITRE identifies as an Improper Authorization (CWE-285).
+
+3.2.2.	Exploitation
+The exploitation POC code follows the same path as the date of birth information leak.  The code begins by obtaining a session through the registration process, then requesting a patient ID.  If this value is not known, the exploit provides the ability to look up the patient using the email, the first, and the last name using the same code as the previous exploit.  Provided that a patient ID was entered or found through the lookup, the code continues by requesting the new insurance information to write.  Finally, the code calls the identified new insurance POST with the data.
+The complete POC code is provided in Appendix B.
+
+3.2.3.	Mitigation Advice
+In contrast to the first vulnerability, this one cannot be remediated by requiring an email verification. The attacker could begin registering for an account and use that session to complete the exploit.  However, assigning the PID in the session upon an initial registration request, and utilizing that PID while removing the PID from the query string, would prevent abuse as the user would only be allowed to update the insurance for the newly created account.  While this may waste PIDs in failed registration attempts, the impact would be minimal.
+
+3.2.4.	Scoring and Disclosure
+This vulnerability is usable from the public internet, requires a low complexity of code to exploit, has no privileges, and has no user interaction.  The impact of changing the insurance carrier on file can lead to the practice of collecting incorrect funds or denying the patient access to care based on a non-participating plan.  The data integrity of the patient insurance is completely compromised. These factors contribute to a base score of 7.5.  Since a reliable exploit exists and has been confirmed by the project owner, the temporal score is 7.3.  Finally, Environmental Score components follow the base score components and contribute to a score of 7.3. This calculates to a CVVS v3.1 score of 7.3.
+The vulnerability, exploit, and CVVS calculations were provided to the project owners via secure email, who verified the receipt and began work on a patch to alleviate the issue.  Following the patch publication, the source code for the exploit was posted on GitHub, and a CVE was published to identify the vulnerability publicly and promote patching. The CVE ID issued for this vulnerability is CVE-2022-XXXXX.
